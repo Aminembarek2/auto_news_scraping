@@ -1,6 +1,5 @@
 ## Automatic News Scraping
-Auto scraping news, translate to arabic, publish it
-
+Automatic Scrape World and Tech news.
 #### How to use it ?
 1. Clone this repository into your computer.
 3. Install requiremets 
