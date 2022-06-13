@@ -1,0 +1,32 @@
+<!doctype >
+<html>
+<head>
+    <title style="  text-align: right;"> أوتو نيوز</title>
+    <meta name="description" content=" أوتو نيوز :  تكنولوجيا, اخبار العالم"/>
+    <meta name="keywords" content=" اخبار العالم, تكنولوجيا" />
+    <meta name="robots" content="noindex" />
+
+    <link rel="shortcut icon" href="{{ url_for('static', filename='media/logo.png') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">    
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+        <nav class="nav_bar">
+            <div class="container">
+                <a class="text-white" href="{{ url_for('posts.home')}}"> أوتو نيوز</a>
+            </div>
+        </nav>
+
+    {% block index %}
+    
+    {% endblock  %}
+
+    {% block post %}
+    
+    {% endblock post %}
+    {% block home %}
+    
+    {% endblock home %}
+    
+</body>
+</html>

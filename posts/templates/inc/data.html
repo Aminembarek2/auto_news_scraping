@@ -1,0 +1,42 @@
+{% for category in categories %}
+<div class="container head">
+    <a href="{{ url_for('posts.category',category=category.category) }}">
+        {% if category.category == 'world_news' %}
+        <div class="home_title">
+            <h1 class="news_title float-right">&nbsp;اخبار العالم</h1>
+            <hr  style="width:70%;float:right;"/><span class="more"> المزيد&nbsp;&nbsp;</span>
+        </div>
+        {% elif  category.category == 'tech'%}
+        <div class="home_title">
+            <h1 class="news_title float-right">&nbsp;تكنولوجيا</h1>
+            <hr  style="width:70%;float:right;"/><span class="more"> المزيد&nbsp;&nbsp;</span>
+        </div>
+        {% endif %}
+    </a>
+    {% for post in data %}
+        {% if post.category == category.category %}
+        <div class="post float-right  ml-1">
+            {% if post.image %}
+                <a href="{{ url_for('posts.post',id = post.id,category = post.category) }}">
+                    <img class ="img float-right"src="{{ post.image}}"alt="{{ post.title}}"/>
+                </a>
+                <a href="{{ url_for('posts.post',id = post.id,category = post.category) }}">
+                    <p class="caption">
+                        {{post.title}}
+                    </p>
+                </a>
+            {% else %}
+            <a href="{{ url_for('posts.post',id = post.id,category=post.category) }}">
+                <p class="caption" style="font-size:20px">
+                    {{post.title}}
+                </p>
+                <span class="post_desc">
+                    {{post.description}}
+                </span>
+            </a>
+            {% endif %}
+        </div>
+        {% endif %}
+    {% endfor %}
+    </div>
+{% endfor %}

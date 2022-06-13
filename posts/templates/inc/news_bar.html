@@ -1,0 +1,8 @@
+<div class="slideUp center" id="news-bar">
+    <marquee direction="right" scrollamount="6" behavior="scroll" onmouseover="this.stop()" onmouseout="this.start()">
+        {% for post in posts %}
+        <span> - </span>
+        <a href="{{ url_for('posts.post',id = post.id,category=post.category)}}" class="hvr-pop">{{post.title}}</a>
+        {% endfor %}
+    </marquee>
+</div>

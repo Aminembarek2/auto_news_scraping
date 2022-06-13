@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block post %}
+    <div class="container pl-4 pr-6">
+        <div class="main-content">
+            {% if data %}
+                {% for post in data %}
+                    <p class="time float-right center mr-5">{{post.time}}</p><br>
+                    <h1 class="main-title float-right mr-5">{{post.title}}</h1>
+                    <br><br>
+                    {% if post.image %}
+                        <img class ="main-image center"src="{{ post.image}}" alt="{{post.title}}"/>
+                        <p class="main-description">
+                            {{post.description}}
+                        </p>
+                    {% else %}
+                    <p class="main-description">
+                        {{post.description}}
+                    </p>                    
+                    {% endif %}
+
+                {% endfor %}
+                
+            {% endif %}
+        </div>
+    </div>
+{% endblock post %}
