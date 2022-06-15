@@ -7,7 +7,16 @@ Auto Scrape World and Tech news.
 ```
 export FLASK_APP=main.py
 ```
-4. Run it!
+5. Configure your database:
+> I used railway as database
+```
+export MYSQLUSER=******
+export MYSQLPASSWORD=*******
+export MYSQLHOST=******
+export MYSQLPORT=*****
+export MYSQLDATABASE=*****
+```
+7. Run it!
 
 Demo : 
 
