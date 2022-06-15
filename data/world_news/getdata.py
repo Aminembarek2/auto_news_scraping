@@ -68,7 +68,7 @@ for i in data_list:
     times = times.split()
     time = ""
 
-    for j in range(0,3):
+    for j in range(1,4):
         time += times[j] + " "
     if description_text!= None and description_text!=[]:
         for j in description_text:

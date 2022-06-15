@@ -1,11 +1,6 @@
 import os
-
-BASE_DIR = os.path.dirname(os.path.abspath(__name__))
-URL = os.path.join(BASE_DIR,'posts.db')
-
+# Configure your database
 class Config:
-    DEBUG = True
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + URL
+    DEBUG = False
+    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://'+os.environ['MYSQLUSER'] +':'+os.environ['MYSQLPASSWORD']+'@'+os.environ['MYSQLHOST']+':'+os.environ['MYSQLPORT']+'/'+os.environ['MYSQLDATABASE']
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-
-# postgresql://postgres:root@localhost/posts

@@ -11,8 +11,7 @@ posts = Blueprint('posts',__name__,template_folder='templates')
 
 def get_posts(posts,offset=0, per_page=12):
     return posts[offset: offset + per_page]
-
-@posts.route('/')
+@posts.route('/',methods = ['GET'])
 def home():
     categories = Post.query.with_entities(Post.category).order_by(Post.id.desc()).group_by(Post.category)
     techs = Post.query.filter_by(category="tech").order_by(Post.id.desc()).all()[:6]
@@ -24,7 +23,7 @@ def home():
 
 
 
-@posts.route('/<category>')
+@posts.route('/<category>',methods = ['GET'])
 def category(category):
     posts = Post.query.filter_by(category=category).order_by(Post.id.desc()).all()
     page = int(request.args.get('page', 1))
@@ -38,7 +37,7 @@ def category(category):
 
 
 
-@posts.route('/<category>/<id>/')
+@posts.route('/<category>/<id>/',methods = ['GET'])
 def post(category,id):
     post = Post.query.filter_by(id=id)
     return render_template('post.html',data=post)

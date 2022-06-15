@@ -1,20 +1,16 @@
-import sqlite3
 import json
 import data.tech.translatedata
-
-conn = sqlite3.connect('posts.db')
-cur = conn.cursor()
-
-cur.execute('CREATE TABLE IF NOT EXISTS post(id INTEGER PRIMARY KEY AUTOINCREMENT, title varchar unique,description varchar,image varchar,time varchar,category varchar);')
-
+from app import db
+from models import Post
 with open('data/tech/data.json','r+') as file:
     file = json.load(file) 
 file.reverse()
+
+db.create_all()
 for i in file:
-    cur.execute("SELECT title FROM post where title = ?;",(i['title'],))
-    exists = cur.fetchone()
+    post = Post(title=i['title'],description=i['description'],image=i['image'],time=i['time'],category='tech')
+    exists = Post.query.filter_by(title=i['title']).all()
     if not exists:
-        cur.execute('INSERT INTO post (title,description,image,time,category) VALUES (?,?,?,?,"tech");',(i['title'],i['description'],i['image'],i['time']))
-    conn.commit()
-cur.close()
-conn.close()
+        db.session.add(post)
+        db.session.commit()
+db.session.close()
