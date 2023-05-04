@@ -13,7 +13,7 @@ def get_posts(posts,offset=0, per_page=12):
     return posts[offset: offset + per_page]
 @posts.route('/',methods = ['GET'])
 def home():
-    categories = Post.query.with_entities(Post.category).order_by(Post.id.desc()).group_by(Post.category)
+    categories = Post.query.with_entities(Post.category).group_by(Post.category).order_by(Post.category, Post.id.desc()).all()
     techs = Post.query.filter_by(category="tech").order_by(Post.id.desc()).all()[:6]
     worlds = Post.query.filter_by(category="world_news").order_by(Post.id.desc()).all()[:6]
     posts = worlds.copy()
@@ -42,7 +42,6 @@ def post(category,id):
     post = Post.query.filter_by(id=id)
     return render_template('post.html',data=post)
 
-@posts.before_app_first_request
 def scrape():
     importlib.import_module('data.main')
 

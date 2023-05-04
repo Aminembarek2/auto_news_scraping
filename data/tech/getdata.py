@@ -66,7 +66,10 @@ for i in data_list:
             #Scrap Image
             string = images[0].find('noscript')
             image = BeautifulSoup(str(string), "html.parser")
-            image = image.find('img').get('src')
+            if image.find('img') is not None:
+                image = image.find('img').get('src')
+            else:
+                image = None
     else:
         no_news.append(i)
 
